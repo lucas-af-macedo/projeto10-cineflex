@@ -3,3 +3,4 @@ export default function SessionPage(){
         <></>
     )
 }
+/*https://mock-api.driven.com.br/api/v5/cineflex/showtimes/ID_DA_SESSAO/seats*/

@@ -7,11 +7,17 @@ export default function MainPage({setFooterInfo, footerInfo}){
     const [movies,setMovies] = useState([])
 
     useEffect(() => {
-		const request = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
+        const URL = "https://mock-api.driven.com.br/api/v5/cineflex/movies"
+		const request = axios.get(URL);
+        setFooterInfo({
+            movie: null,
+            session: null,
+            poster: null
+        })
 
 		request.then(resposta => {
 			setMovies(resposta.data);
-            console.log(resposta.data)
+            
 		});
 
 		request.catch(erro => {
@@ -21,7 +27,7 @@ export default function MainPage({setFooterInfo, footerInfo}){
 
     return(
         <>
-            <h1>Selecione o filme</h1>
+            <Title>Selecione o filme</Title>
             <MoviesList>
                 {movies.map((f,i)=>(<Movie key = {i} movie = {f} setFooterInfo = {setFooterInfo}/>))}
             </MoviesList>
@@ -29,6 +35,13 @@ export default function MainPage({setFooterInfo, footerInfo}){
     )
 }
 
+const Title = styled.h1`
+    color: #293845;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+`
 
 
 const MoviesList = styled.div`

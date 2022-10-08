@@ -2,16 +2,9 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Movie({movie, setFooterInfo}){
-    function changeFooter(){
-        setFooterInfo({
-            movie: movie.title,
-            session: null,
-            poster: movie.posterURL
-        })
-    }
     return(
         <MovieBox>
-                <Link onClick={changeFooter} to={`/filme/${movie.id}`}>
+            <Link to={`/filme/${movie.id}`}>
                 <img src={movie.posterURL}/>
             </Link>
         </MovieBox>

@@ -22,8 +22,8 @@ export default function App(props){
             <Body>
                 <Container>
                     <Routes>
-                        <Route path="/" element={<MainPage setFooterInfo = {setFooterInfo} footerInfo = {footerInfo}/>} />
-                        <Route path="/filme/:movieId" element={<MoviePage footerInfo = {footerInfo}/>} />
+                        <Route path="/" element={<MainPage setFooterInfo = {setFooterInfo} />} />
+                        <Route path="/filme/:movieId" element={<MoviePage setFooterInfo = {setFooterInfo}/>} />
                         <Route path="/sessao/:sessionId" element = {<SessionPage />} />
                         <Route path="/sucesso" element = {<SuccessPage />} />
                     </Routes>
@@ -42,10 +42,6 @@ const Body = styled.div`
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    h1{
-        font-size: 24px;
-    }
 `
 
 const Container = styled.div`
@@ -57,6 +53,7 @@ const Container = styled.div`
     width: 100vw;
     max-width: 600px;
     height: 100%;
+    min-height: 100vh;
     margin-top: 60px;
 `
 

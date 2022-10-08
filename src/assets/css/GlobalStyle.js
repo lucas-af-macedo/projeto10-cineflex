@@ -47,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
     }
+    
+    body::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 export default GlobalStyle
