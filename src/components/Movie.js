@@ -4,7 +4,7 @@ import styled from "styled-components"
 export default function Movie({movie, setFooterInfo}){
     return(
         <MovieBox>
-            <Link to={`/filme/${movie.id}`}>
+            <Link to={`/sessoes/${movie.id}`}>
                 <img src={movie.posterURL}/>
             </Link>
         </MovieBox>

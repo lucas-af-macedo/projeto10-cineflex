@@ -1,0 +1,10 @@
+const colors = {
+  COLORGREEN: '#1AAE9E',
+  COLORYELLOW: '#FBE192',
+  COLORGRAY: '#C3CFD9',
+  BORDERGREEN: "#0E7D71",
+  BORDERYELLOW: "#F7C52B",
+  BORDERGRAY: "#7B8B99"
+}
+
+export default colors

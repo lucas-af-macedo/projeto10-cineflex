@@ -9,7 +9,7 @@ export default function Navbar({footerInfo}){
                     <div>
                         <img src={footerInfo.poster}/>
                     </div>
-                    <h1>{footerInfo.movie}</h1>
+                    <h1>{footerInfo.movie.slice(0,22)}</h1>
                 </Footer>}
         </>
     )

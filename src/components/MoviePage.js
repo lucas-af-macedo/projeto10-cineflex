@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Session from './session';
+import Session from './Session';
 import styled from 'styled-components';
 
 export default function MoviePage({setFooterInfo}){

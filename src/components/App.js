@@ -9,11 +9,13 @@ import SuccessPage from "./SuccessPage";
 import styled from "styled-components";
 
 export default function App(props){
+    const [cart, setCart] = React.useState([])
     const [footerInfo,setFooterInfo] = React.useState({
         movie: null,
         session: null,
         poster: null
     })
+    
     return(
         <div>
         <BrowserRouter>
@@ -23,9 +25,9 @@ export default function App(props){
                 <Container>
                     <Routes>
                         <Route path="/" element={<MainPage setFooterInfo = {setFooterInfo} />} />
-                        <Route path="/filme/:movieId" element={<MoviePage setFooterInfo = {setFooterInfo}/>} />
-                        <Route path="/sessao/:sessionId" element = {<SessionPage />} />
-                        <Route path="/sucesso" element = {<SuccessPage />} />
+                        <Route path="/sessoes/:movieId" element={<MoviePage setFooterInfo = {setFooterInfo}/>} />
+                        <Route path="/assentos/:sessionId" element = {<SessionPage setFooterInfo = {setFooterInfo} cart={cart} setCart={setCart} />} />
+                        <Route path="/sucesso" element = {<SuccessPage cart={cart} footerInfo = {footerInfo}/>} />
                     </Routes>
                 </Container>
             </Body>
@@ -47,10 +49,11 @@ const Body = styled.div`
 const Container = styled.div`
     background-color: silver;
     padding: 20px;
+    padding-bottom: 117px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     max-width: 600px;
     height: 100%;
     min-height: 100vh;

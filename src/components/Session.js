@@ -2,19 +2,12 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Session({session, day, setFooterInfo}){
-    function changeFooter(id){
-        setFooterInfo({
-            movie: session.title,
-            session: id,
-            poster: session.posterURL
-        })
-    }
     return(
         <>
             <WeekDay>{day.weekday} - {day.date}</WeekDay>
             <BoxButtons>
                 {day.showtimes.map((f,i)=>(
-                    <Link key={i} onClick={()=>{changeFooter(f.id)}} to={`/sessao/${f.id}`}>
+                    <Link key={i}  to={`/assentos/${f.id}`}>
                         <Button >{f.name}</Button>
                     </Link>))}
             </BoxButtons>
