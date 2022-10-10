@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 export default function SuccessPage({cart, movieData}){
-    console.log(cart)
-    console.log(movieData)
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (cart.length===0)
+            navigate('/')
+    },[cart,navigate])
     return(
         <>
         <SuccesTitle><h3>Pedido feito com sucesso!</h3></SuccesTitle>
@@ -15,8 +20,8 @@ export default function SuccessPage({cart, movieData}){
             </DataBox>
             <DataBox>
                 <h1>Ingressos e dados do comprador</h1>
-                {cart.map((f)=>(
-                    <div>
+                {cart.map((f,i)=>(
+                    <div key={i}>
                     <h2>Assento {f.nameSeat}</h2>
                     <h2>Nome: {f.name}</h2>
                     <h2>CPF: {f.cpf}</h2></div>))}

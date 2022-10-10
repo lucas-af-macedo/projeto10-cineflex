@@ -23,7 +23,7 @@ export default function MainPage({setFooterInfo, footerInfo}){
 		request.catch(erro => {
 			console.log(erro.response.data);
 		});
-	}, []);
+	}, [setFooterInfo]);
 
     return(
         <>

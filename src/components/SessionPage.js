@@ -8,13 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}){
     const params = useParams();
-    const [movie,setMovie] = useState()
     const [seat,setSeat] = useState([])
     const navigate = useNavigate();
     
     function postPurchase(event){
         event.preventDefault();
-        console.log(cart)
         setFooterInfo({
             movie: null,
             session: null,
@@ -24,7 +22,6 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
             ids: cart.map((f)=>f.idSeat),
             compradores: cart.map((f)=>({idAssento: f.nameSeat, nome: f.name, cpf: f.cpf}))
         }
-        console.log(promise)
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`
         const request = axios.post(URL,promise);
         request.then(answer => {
@@ -41,7 +38,6 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
 		const request = axios.get(URL);
         setCart([])
 		request.then(answer => {
-			setMovie(answer.data);
             setSeat(answer.data.seats)
             setMovieData({
                 movie: answer.data.movie.title,
@@ -49,11 +45,7 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
             })
             setFooterInfo({
                 movie: answer.data.movie.title,
-                session: {
-                    weekday: answer.data.day.weekdays, 
-                    date:answer.data.day.date,
-                    name: answer.data.name
-                },
+                session: answer.data.day.weekday+' - '+answer.data.name,
                 poster: answer.data.movie.posterURL
             })
 		});
@@ -61,7 +53,7 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
 		request.catch(erro => {
 			console.log(erro.response.data);
 		});
-	}, []);
+	}, [setCart,setMovieData,setFooterInfo,params.sessionId]);
     return(
         <>
             <Title>Selecione o(s) assento(s)</Title>
@@ -84,7 +76,7 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
             </BoxDemo>
             <BoxData>
             {cart.length>0 && <form onSubmit={postPurchase}>
-                {cart.map((f,i)=> (<DataBuier key={i} seat={f}></DataBuier>))}
+                {cart.map((f,i)=> (<DataBuier key={f.idSeat} seat={f}></DataBuier>))}
                 <DivButton><button type="submit">Reservar assento(s)</button></DivButton>
 		    </form>}
             </BoxData>

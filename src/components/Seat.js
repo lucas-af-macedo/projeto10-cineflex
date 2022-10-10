@@ -24,7 +24,7 @@ export default function Seat({seat, cart, setCart}){
     function selectSeat(){
         if (seat.isAvailable){
             if (selected){
-                const text ='Você deseja remover a seleçao?'
+                const text ='Você deseja remover o assento e apagar os dados?'
                 const remove = window.confirm(text)
                 if(remove){
                     setSelected(false)
@@ -39,7 +39,7 @@ export default function Seat({seat, cart, setCart}){
                 addSeat()
             }
         }else{
-            alert('Este assento esta ocupado')
+            alert('Esse assento não está disponível')
         }
     }
     function addSeat(){

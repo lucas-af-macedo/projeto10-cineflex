@@ -13,7 +13,7 @@ export default function MoviePage({setFooterInfo, setCart}){
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${params.movieId}/showtimes`
 		const request = axios.get(URL);
         
-        setCart=([])  
+        setCart([])  
 
 		request.then(resposta => {
 			setSession(resposta.data);
@@ -28,7 +28,7 @@ export default function MoviePage({setFooterInfo, setCart}){
 		request.catch(erro => {
 			console.log(erro.response.data);
 		});
-	}, []);
+	}, [setCart, params.movieId, setFooterInfo]);
     return(
         <>
             <Title>Selecione o horário</Title>
