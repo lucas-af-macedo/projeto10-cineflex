@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Movie from "./Movie";
 
-export default function MainPage({setFooterInfo, footerInfo}){
+export default function MainPage({setFooterInfo, footerInfo, setReturnTo}){
     const [movies,setMovies] = useState([])
 
     useEffect(() => {
         const URL = "https://mock-api.driven.com.br/api/v5/cineflex/movies"
 		const request = axios.get(URL);
+        setReturnTo('/')
         setFooterInfo({
             movie: null,
             session: null,
@@ -23,7 +24,7 @@ export default function MainPage({setFooterInfo, footerInfo}){
 		request.catch(erro => {
 			console.log(erro.response.data);
 		});
-	}, [setFooterInfo]);
+	}, [setFooterInfo, setReturnTo]);
 
     return(
         <>

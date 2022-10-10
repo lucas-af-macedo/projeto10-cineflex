@@ -11,6 +11,7 @@ import styled from "styled-components";
 export default function App(props){
     const [cart, setCart] = React.useState([])
     const [movieData, setMovieData] = React.useState([])
+    const [returnTo,setReturnTo] = React.useState('')
     const [footerInfo,setFooterInfo] = React.useState({
         movie: null,
         session: null,
@@ -21,14 +22,14 @@ export default function App(props){
         <div>
         <BrowserRouter>
             <GlobalStyle/>
-            <Navbar footerInfo = {footerInfo}/>
+            <Navbar footerInfo = {footerInfo} returnTo={returnTo} />
             <Body>
                 <Container>
                     <Routes>
-                        <Route path="/" element={<MainPage setFooterInfo = {setFooterInfo} />} />
-                        <Route path="/sessoes/:movieId" element={<MoviePage setFooterInfo = {setFooterInfo} setCart={setCart} />} />
-                        <Route path="/assentos/:sessionId" element = {<SessionPage setFooterInfo = {setFooterInfo} cart={cart} setCart={setCart} setMovieData={setMovieData} />} />
-                        <Route path="/sucesso" element = {<SuccessPage cart={cart} movieData = {movieData}/>} />
+                        <Route path="/" element={<MainPage setFooterInfo = {setFooterInfo} setReturnTo={setReturnTo} />} />
+                        <Route path="/sessoes/:movieId" element={<MoviePage setFooterInfo = {setFooterInfo} setCart={setCart} setReturnTo={setReturnTo} />} />
+                        <Route path="/assentos/:sessionId" element = {<SessionPage setFooterInfo = {setFooterInfo} cart={cart} setCart={setCart} setMovieData={setMovieData} setReturnTo={setReturnTo} />} />
+                        <Route path="/sucesso" element = {<SuccessPage cart={cart} movieData = {movieData} setReturnTo={setReturnTo} />} />
                     </Routes>
                 </Container>
             </Body>
@@ -60,7 +61,7 @@ const Body = styled.div`
 `
 
 const Container = styled.div`
-    background-color: silver;
+    background-color: #b0b0c0;
     padding: 20px;
     display: flex;
     flex-direction: column;

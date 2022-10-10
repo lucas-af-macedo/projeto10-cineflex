@@ -4,7 +4,7 @@ import axios from 'axios';
 import Session from './Session';
 import styled from 'styled-components';
 
-export default function MoviePage({setFooterInfo, setCart}){
+export default function MoviePage({setFooterInfo, setCart, setReturnTo}){
     const params = useParams();
     const [session,setSession] = useState()
     const [days,setDays] = useState([])
@@ -12,7 +12,7 @@ export default function MoviePage({setFooterInfo, setCart}){
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${params.movieId}/showtimes`
 		const request = axios.get(URL);
-        
+        setReturnTo('/')
         setCart([])  
 
 		request.then(resposta => {
@@ -28,7 +28,7 @@ export default function MoviePage({setFooterInfo, setCart}){
 		request.catch(erro => {
 			console.log(erro.response.data);
 		});
-	}, [setCart, params.movieId, setFooterInfo]);
+	}, [setCart, params.movieId, setFooterInfo, setReturnTo]);
     return(
         <>
             <Title>Selecione o horário</Title>

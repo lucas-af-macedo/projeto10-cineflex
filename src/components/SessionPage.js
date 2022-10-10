@@ -6,7 +6,7 @@ import Seat from './Seat';
 import DataBuier from './DataBuier';
 import { useNavigate } from "react-router-dom";
 
-export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}){
+export default function SessionPage({setFooterInfo, cart, setCart, setMovieData, setReturnTo}){
     const params = useParams();
     const [seat,setSeat] = useState([])
     const navigate = useNavigate();
@@ -25,6 +25,7 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`
         const request = axios.post(URL,promise);
         request.then(answer => {
+            setReturnTo("/assentos/"+params.sessionId)
             navigate('/sucesso')
 		});
 
@@ -38,8 +39,10 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
 		const request = axios.get(URL);
         setCart([])
 		request.then(answer => {
+            setReturnTo("/sessoes/"+answer.data.movie.id)
             setSeat(answer.data.seats)
             setMovieData({
+                sessionId: answer.data.id,
                 movie: answer.data.movie.title,
                 date:answer.data.day.date+' '+answer.data.name,
             })
@@ -53,7 +56,7 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}
 		request.catch(erro => {
 			console.log(erro.response.data);
 		});
-	}, [setCart,setMovieData,setFooterInfo,params.sessionId]);
+	}, [setCart,setMovieData,setFooterInfo,params.sessionId, setReturnTo]);
     return(
         <>
             <Title>Selecione o(s) assento(s)</Title>

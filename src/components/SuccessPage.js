@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
 
-export default function SuccessPage({cart, movieData}){
+export default function SuccessPage({cart, movieData, setReturnTo}){
     const navigate = useNavigate();
     useEffect(() => {
         if (cart.length===0)
             navigate('/')
-    },[cart,navigate])
+    },[cart,navigate, setReturnTo])
     return(
         <>
         <SuccesTitle><h3>Pedido feito com sucesso!</h3></SuccesTitle>

@@ -1,14 +1,21 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
 
-export default function Navbar({footerInfo}){
+export default function Navbar({footerInfo, returnTo}){
+    const navigate = useNavigate();
     function nameSize(){
         if(footerInfo.movie.length>22)
             return(footerInfo.movie.slice(0,22)+'...')
         return (footerInfo.movie)
     }
+    function goTo(){
+        navigate(returnTo)
+    }
     return(
         <>
-            <Header>CINEFLEX</Header>
+            <Header>
+            <HeaderDiv><div onClick={goTo} ><ion-icon name="chevron-back-outline"></ion-icon></div>
+                CINEFLEX</HeaderDiv></Header>
             {footerInfo.movie && 
                 <Footer>
                     <ImageDiv>
@@ -26,7 +33,7 @@ export default function Navbar({footerInfo}){
 const Header = styled.div`
     width: 100%;
     height: 60px;
-    background-color: gray;
+    background-color: #696980;
     position: fixed;
     left: 0;
     top: 0;
@@ -39,13 +46,29 @@ const Header = styled.div`
     color: #E8833A;
 `
 
+const HeaderDiv = styled.div`
+    width: 100%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div{
+        cursor: pointer;
+        position: absolute;
+        color: #293845;
+        left: 15px;
+        top: 12px;
+    }
+`
+
 const Footer = styled.div`
     width: 100vw;
     height: 117px;
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: gray;;
+    background-color: #696980;
     display: flex;
     align-items: center;
     border: 1px solid #8E9DAA;

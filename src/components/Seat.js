@@ -74,6 +74,8 @@ export default function Seat({seat, cart, setCart}){
 }
 
 const Chair = styled.button`
+    font-size: 11px;
+    font-family: 'Roboto', sans-serif;
     height: 30px;
     width: 30px;
     display: flex;
