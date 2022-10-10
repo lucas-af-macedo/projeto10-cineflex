@@ -22,6 +22,7 @@ const MovieBox = styled.div`
     align-items: center;
     margin: 15px;
     img{
+        margin: 8px;
         width: 129px;
         height: 193px;
     }

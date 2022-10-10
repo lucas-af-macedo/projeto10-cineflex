@@ -46,8 +46,8 @@ export default function Seat({seat, cart, setCart}){
         const objectSeat = {
             idSeat: seat.id,
             nameSeat: seat.name,
-            cpf: null,
-            name: null
+            cpf: '',
+            name: ''
         }
         let listSeat = [...cart]
         const index = listSeat.findIndex((f)=>f.idSeat>seat.id)

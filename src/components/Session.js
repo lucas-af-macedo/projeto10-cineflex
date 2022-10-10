@@ -26,8 +26,12 @@ const WeekDay = styled.h1`
 const BoxButtons = styled.div`
     margin-top: 30px;
     margin-bottom: 30px;
+    width: 174px;
+    display: flex;
+    justify-content: space-between;
 `
 const Button = styled.button`
+    cursor: pointer;
     width: 83px;
     height: 43px;
     font-family: 'Roboto' sans-serif;
@@ -37,5 +41,4 @@ const Button = styled.button`
     color: white;
     border: 0px;
     border-radius: 3px;
-    margin-right: 8px;
 `

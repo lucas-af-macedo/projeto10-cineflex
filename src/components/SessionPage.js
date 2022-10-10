@@ -1,37 +1,60 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Session from './Session';
 import styled from 'styled-components';
 import Seat from './Seat';
 import DataBuier from './DataBuier';
 import { useNavigate } from "react-router-dom";
 
-export default function SessionPage({setFooterInfo, cart, setCart}){
+export default function SessionPage({setFooterInfo, cart, setCart, setMovieData}){
     const params = useParams();
     const [movie,setMovie] = useState()
     const [seat,setSeat] = useState([])
     const navigate = useNavigate();
     
-    function what(event){
+    function postPurchase(event){
         event.preventDefault();
         console.log(cart)
-        navigate('/sucesso')
+        setFooterInfo({
+            movie: null,
+            session: null,
+            poster: null
+        })
+        const promise = {
+            ids: cart.map((f)=>f.idSeat),
+            compradores: cart.map((f)=>({idAssento: f.nameSeat, nome: f.name, cpf: f.cpf}))
+        }
+        console.log(promise)
+        const URL = `https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`
+        const request = axios.post(URL,promise);
+        request.then(answer => {
+            navigate('/sucesso')
+		});
+
+		request.catch(erro => {
+			console.log(erro.response.data);
+		});
+
     }
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${params.sessionId}/seats`
 		const request = axios.get(URL);
-		request.then(resposta => {
-			setMovie(resposta.data);
-            setSeat(resposta.data.seats)
+        setCart([])
+		request.then(answer => {
+			setMovie(answer.data);
+            setSeat(answer.data.seats)
+            setMovieData({
+                movie: answer.data.movie.title,
+                date:answer.data.day.date+' '+answer.data.name,
+            })
             setFooterInfo({
-                movie: resposta.data.movie.title,
+                movie: answer.data.movie.title,
                 session: {
-                    weekday: resposta.data.day.weekdays, 
-                    date:resposta.data.day.date,
-                    name: resposta.data.name
+                    weekday: answer.data.day.weekdays, 
+                    date:answer.data.day.date,
+                    name: answer.data.name
                 },
-                poster: resposta.data.movie.posterURL
+                poster: answer.data.movie.posterURL
             })
 		});
 
@@ -43,7 +66,7 @@ export default function SessionPage({setFooterInfo, cart, setCart}){
         <>
             <Title>Selecione o(s) assento(s)</Title>
             <BoxSeats>
-                {seat.map((f,i)=>(<Seat key={i} seat={f} cart={cart} setCart={setCart} />))}
+                {seat.map((f,i)=>(<Seat key={f.id} seat={f} cart={cart} setCart={setCart} />))}
             </BoxSeats>
             <BoxDemo>
                 <Exemple color='#1AAE9E' border="#0E7D71">
@@ -60,7 +83,7 @@ export default function SessionPage({setFooterInfo, cart, setCart}){
                 </Exemple>
             </BoxDemo>
             <BoxData>
-            {cart.length>0 && <form onSubmit={what}>
+            {cart.length>0 && <form onSubmit={postPurchase}>
                 {cart.map((f,i)=> (<DataBuier key={i} seat={f}></DataBuier>))}
                 <DivButton><button type="submit">Reservar assento(s)</button></DivButton>
 		    </form>}
@@ -68,6 +91,7 @@ export default function SessionPage({setFooterInfo, cart, setCart}){
         </>
     )
 }
+
 
 const Title = styled.h1`
     color: #293845;

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Session from './Session';
 import styled from 'styled-components';
 
-export default function MoviePage({setFooterInfo}){
+export default function MoviePage({setFooterInfo, setCart}){
     const params = useParams();
     const [session,setSession] = useState()
     const [days,setDays] = useState([])
@@ -12,6 +12,8 @@ export default function MoviePage({setFooterInfo}){
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v5/cineflex/movies/${params.movieId}/showtimes`
 		const request = axios.get(URL);
+        
+        setCart=([])  
 
 		request.then(resposta => {
 			setSession(resposta.data);
@@ -48,5 +50,4 @@ const Title = styled.h1`
 const Container = styled.div`
     width: 100%;
     margin: 20px;
-    margin-bottom: 117px;
 `
