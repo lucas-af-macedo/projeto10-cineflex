@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 export default function SuccessPage({cart, movieData, setReturnTo}){
     const navigate = useNavigate();
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (cart.length===0)
             navigate('/')
     },[cart,navigate, setReturnTo])
@@ -79,5 +80,6 @@ const DivButton = styled.div`
         height: 42px;
         font-size: 18px;
         margin-top: 30px;
+        margin-bottom: -300px;
     }
 `

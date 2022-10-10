@@ -10,7 +10,7 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData,
     const params = useParams();
     const [seat,setSeat] = useState([])
     const navigate = useNavigate();
-    
+    window.scrollTo(0, 0)
     function postPurchase(event){
         event.preventDefault();
         setFooterInfo({

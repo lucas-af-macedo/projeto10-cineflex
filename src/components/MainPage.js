@@ -9,6 +9,7 @@ export default function MainPage({setFooterInfo, footerInfo, setReturnTo}){
     useEffect(() => {
         const URL = "https://mock-api.driven.com.br/api/v5/cineflex/movies"
 		const request = axios.get(URL);
+        window.scrollTo(0, 0)
         setReturnTo('/')
         setFooterInfo({
             movie: null,

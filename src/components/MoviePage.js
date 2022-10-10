@@ -14,7 +14,7 @@ export default function MoviePage({setFooterInfo, setCart, setReturnTo}){
 		const request = axios.get(URL);
         setReturnTo('/')
         setCart([])  
-
+        window.scrollTo(0, 0)
 		request.then(resposta => {
 			setSession(resposta.data);
             setDays(resposta.data.days)
