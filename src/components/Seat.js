@@ -67,8 +67,7 @@ export default function Seat({seat, cart, setCart}){
     
     return(
         <>
-            <Chair onClick={selectSeat} color={color} border={border} >{("00" + seat.name).slice(-2)}</Chair>
-            
+            <Chair data-identifier="seat" onClick={selectSeat} color={color} border={border} >{("00" + seat.name).slice(-2)}</Chair>
         </>
     )
 }

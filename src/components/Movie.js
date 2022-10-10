@@ -5,7 +5,7 @@ export default function Movie({movie, setFooterInfo}){
     return(
         <MovieBox>
             <Link to={`/sessoes/${movie.id}`}>
-                <img src={movie.posterURL} alt='Poster' />
+                <img  data-identifier="movie-outdoor" src={movie.posterURL} alt='Poster' />
             </Link>
         </MovieBox>
     )

@@ -65,22 +65,22 @@ export default function SessionPage({setFooterInfo, cart, setCart, setMovieData,
             </BoxSeats>
             <BoxDemo>
                 <Exemple color='#1AAE9E' border="#0E7D71">
-                    <div ></div>
+                    <div data-identifier="seat-selected-subtitle"></div>
                     <h1>Selecionado</h1>
                 </Exemple>
                 <Exemple color='#C3CFD9' border="#7B8B99">
-                    <div ></div>
+                    <div data-identifier="seat-available-subtitle"></div>
                     <h1>Disponível</h1>
                 </Exemple>
                 <Exemple color='#FBE192' border="#F7C52B">
-                    <div ></div>
+                    <div data-identifier="seat-unavailable-subtitle"></div>
                     <h1>Indisponível</h1>
                 </Exemple>
             </BoxDemo>
             <BoxData>
             {cart.length>0 && <form onSubmit={postPurchase}>
                 {cart.map((f,i)=> (<DataBuier key={f.idSeat} seat={f}></DataBuier>))}
-                <DivButton><button type="submit">Reservar assento(s)</button></DivButton>
+                <DivButton><button data-identifier="reservation-btn" type="submit">Reservar assento(s)</button></DivButton>
 		    </form>}
             </BoxData>
         </>

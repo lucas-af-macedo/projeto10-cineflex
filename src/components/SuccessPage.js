@@ -15,19 +15,24 @@ export default function SuccessPage({cart, movieData, setReturnTo}){
         <Container>
             <DataBox>
                 <h1>Filme e sessão</h1>
-                <h2>{movieData.movie}</h2>
-                <h2>{movieData.date}</h2>
+                <h2 data-identifier="movie-session-infos-reserve-finished">{movieData.movie}</h2>
+                <h2 data-identifier="movie-session-infos-reserve-finished">{movieData.date}</h2>
             </DataBox>
             <DataBox>
-                <h1>Ingressos e dados do comprador</h1>
+                <h1>Ingressos</h1>
+                {cart.map((f,i)=>(
+                    <h2 data-identifier="seat-infos-reserve-finished">Assento {f.nameSeat}</h2>))}
+            </DataBox>
+            <DataBox>
+                <h1>Comprador</h1>
                 {cart.map((f,i)=>(
                     <div key={i}>
                     <h2>Assento {f.nameSeat}</h2>
-                    <h2>Nome: {f.name}</h2>
-                    <h2>CPF: {f.cpf}</h2></div>))}
+                    <h2 data-identifier="buyer-infos-reserve-finished">Nome: {f.name}</h2>
+                    <h2 data-identifier="buyer-infos-reserve-finished">CPF: {f.cpf}</h2></div>))}
             </DataBox>
         </Container>
-        <DivButton><Link to='/'><button >Voltar pra Home</button></Link></DivButton>
+        <DivButton><Link to='/'><button data-identifier="back-to-home-btn">Voltar pra Home</button></Link></DivButton>
         </>
     )
 }

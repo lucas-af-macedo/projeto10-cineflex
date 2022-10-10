@@ -15,9 +15,9 @@ export default function DataBuier({seat}){
         <>  
             <h1>Assento {seat.nameSeat}</h1>
             <h2>Nome do comprador:</h2>
-            <input type='text' required value={buierName} onChange={nameChange} placeholder='Digite seu nome...' />
+            <input data-identifier="buyer-name-input" type='text' required value={buierName} onChange={nameChange} placeholder='Digite seu nome...' />
             <h2>CPF do comprador:</h2>
-            <input type='number' min='10000000000' max='99999999999' required value={buierCPF} onChange={CPFChange} placeholder='Digite seu CPF...' onWheel={(e) => e.target.blur()} />
+            <input data-identifier="buyer-cpf-input" type='number' min='10000000000' max='99999999999' required value={buierCPF} onChange={CPFChange} placeholder='Digite seu CPF...' onWheel={(e) => e.target.blur()} />
         </>
     )
 }

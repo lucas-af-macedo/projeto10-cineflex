@@ -4,18 +4,18 @@ import styled from "styled-components"
 export default function Session({session, day, setFooterInfo}){
     return(
         <>
-            <WeekDay>{day.weekday} - {day.date}</WeekDay>
+            <WeekDay><h1 data-identifier="session-date">{day.weekday} - {day.date}</h1></WeekDay>
             <BoxButtons>
                 {day.showtimes.map((f,i)=>(
                     <Link key={i}  to={`/assentos/${f.id}`}>
-                        <Button >{f.name}</Button>
+                        <button data-identifier="hour-minute-btn">{f.name}</button>
                     </Link>))}
             </BoxButtons>
         </>
     )
 }
 
-const WeekDay = styled.h1`
+const WeekDay = styled.div`
     color: #293845;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -29,8 +29,7 @@ const BoxButtons = styled.div`
     width: 174px;
     display: flex;
     justify-content: space-between;
-`
-const Button = styled.button`
+    button{
     cursor: pointer;
     width: 83px;
     height: 43px;
@@ -41,4 +40,6 @@ const Button = styled.button`
     color: white;
     border: 0px;
     border-radius: 3px;
+    }
 `
+

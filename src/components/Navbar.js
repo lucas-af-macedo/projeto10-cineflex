@@ -19,9 +19,9 @@ export default function Navbar({footerInfo, returnTo}){
             {footerInfo.movie && 
                 <Footer>
                     <ImageDiv>
-                        <img src={footerInfo.poster} alt='Poster' />
+                        <img data-identifier="movie-img-preview" src={footerInfo.poster} alt='Poster' />
                     </ImageDiv>
-                    <TextDiv>
+                    <TextDiv data-identifier="movie-and-session-infos-preview">
                         <h1>{nameSize()}</h1>
                         {footerInfo.session!==null ? <h1>{footerInfo.session}</h1> : null}
                     </TextDiv>
